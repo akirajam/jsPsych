@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RatingAbstractArt</title>
+        <script src="jspsych-6.3.1/jspsych.js"></script>
+        <script src="jspsych-psychophysics.js"></script>
+        <script src="jspsych-preload.js"></script>
+        <script src="jspsych-instructions.js"></script>
+        <script src="jspsych-html-button-response.js"></script>
+        <script src="jspsych-image-button-response.js"></script>
+        <link href="jspsych-6.3.1/css/jspsych.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        
+    <!-- Change 3: Adding extra scripts for Qualtrics -->
+    <!-- COPY PASTE TO QUALTRICS FROM HERE -->
+    <link href="https://akirajam.github.io/jsPsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+    <div>
+        <span style="font-size: 24px;">
+            <br><br>
+            If you are seeing this message for <span style="color: rgb(255, 0, 0);"><b>more than 5 minutes</b></span>,<br>
+            please screen-capture this screen and send the image to us.
+            <br><br>
+            <span style="font-size: 28px;">We are very sorry for the inconvenience.</span>
+        </span>
+    </div>
+
+    <!-- Change 2: Adding `display_stage` CSS and Div -->
+    <style>
+        #display_stage_background {
+            width: 100vw;
+            background-color: white;
+            z-index: -1;
+        }
+
+        #display_stage {
+            position: fixed;
+            left: 1vw;
+            top: 1vh;
+            height: 98vh;
+            width: 98vw;
+            background-color: white;
+            box-shadow: 1px 1px 1px #999;
+            border-radius: 15px;
+            z-index: 0;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+    </style>
+    <!-- COPY PASTE UP TO QUALTRICS TO HERE -->
+
+    <div id='display_stage_background'></div>
+    <div id='display_stage'></div>
+
+    </body>
+    <script>
+
+const images = ['Hartung_Explosif.jpg','Hartung_T1949-23.jpg','Hartung_T1958-7.jpg','Hartung_T1962-E28.jpg','Hartung_T1962-U8.jpg','Hartung_T1973-E12.jpg','Hartung_T1980-E46.jpg','Hartung_T1988-E18.jpg','Pollock_blue_poles.jpg','Pollock_convergence.jpg','Pollock_full_fathom_five.jpg','Pollock_number_31.jpg','Pollock_number_five.jpg','Pollock_number_one.jpg','Pollock_Pasipae.jpg','Pollock-Everson.jpg'
+,'F01NE.jpg','F02NE.jpg','F04NE.jpg','F05HA.jpg','F06HA.jpg','F08HA.jpg','F11NE.jpg','F12HA.jpg','F19DI.jpg','F21DI.jpg','F23DI.jpg','F25DI.jpg','M02NE.jpg','M04HA.jpg','M04NE.jpg','M05HA.jpg','M07HA.jpg','M13HA.jpg','M13NE.jpg','M15NE.jpg','M25DI.jpg','M26DI.jpg','M28DI.jpg','M29DI.jpg']
+
+const preload = {
+    type: 'preload',
+    images: images
+};
+
+var face1 = {
+    obj_type: 'image',
+    file: 'F25DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face2 = {
+    obj_type: 'image',
+    file: 'M04HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face3 = {
+    obj_type: 'image',
+    file: 'F01NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face4 = {
+    obj_type: 'image',
+    file: 'M05HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face5 = {
+    obj_type: 'image',
+    file: 'F02NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face6 = {
+    obj_type: 'image',
+    file: 'F06HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face7 = {
+    obj_type: 'image',
+    file: 'F19DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face8 = {
+    obj_type: 'image',
+    file: 'M02NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face9 = {
+    obj_type: 'image',
+    file: 'M28DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face10 = {
+    obj_type: 'image',
+    file: 'M29DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face11 = {
+    obj_type: 'image',
+    file: 'F04NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face12 = {
+    obj_type: 'image',
+    file: 'F21DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face13 = {
+    obj_type: 'image',
+    file: 'F05HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face14 = {
+    obj_type: 'image',
+    file: 'M07HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face15 = {
+    obj_type: 'image',
+    file: 'F23DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face16 = {
+    obj_type: 'image',
+    file: 'M15NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face17 = {
+    obj_type: 'image',
+    file: 'M25DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face18 = {
+    obj_type: 'image',
+    file: 'M13HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face19 = {
+    obj_type: 'image',
+    file: 'F11NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face20 = {
+    obj_type: 'image',
+    file: 'M04NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face21 = {
+    obj_type: 'image',
+    file: 'F12HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face22 = {
+    obj_type: 'image',
+    file: 'M13NE.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face23 = {
+    obj_type: 'image',
+    file: 'M26DI.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var face24 = {
+    obj_type: 'image',
+    file: 'F08HA.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 200 // from the trial start (ms)
+}
+
+var painting1 = {
+    obj_type: 'image',
+    file: 'Pollock_number_five.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting2 = {
+    obj_type: 'image',
+    file: 'Hartung_T1962-E28.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting3 = {
+    obj_type: 'image',
+    file: 'Hartung_T1958-7.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting4 = {
+    obj_type: 'image',
+    file: 'Pollock_convergence.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting5 = {
+    obj_type: 'image',
+    file: 'Pollock-Everson.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting6 = {
+    obj_type: 'image',
+    file: 'Pollock_number_31.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting7 = {
+    obj_type: 'image',
+    file: 'Hartung_T1973-E12.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting8 = {
+    obj_type: 'image',
+    file: 'Hartung_T1962-U8.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting9 = {
+    obj_type: 'image',
+    file: 'Pollock_blue_poles.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting10 = {
+    obj_type: 'image',
+    file: 'Hartung_Explosif.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting11 = {
+    obj_type: 'image',
+    file: 'Hartung_T1980-E46.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting12 = {
+    obj_type: 'image',
+    file: 'Hartung_T1988-E18.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting13 = {
+    obj_type: 'image',
+    file: 'Hartung_T1949-23.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting14 = {
+    obj_type: 'image',
+    file: 'Pollock_full_fathom_five.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var painting15 = {
+    obj_type: 'image',
+    file: 'Pollock_Pasipae.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+var painting16 = {
+    obj_type: 'image',
+    file: 'Pollock_number_one.jpg',
+    startX: 500, // location in the canvas
+    startY: 300,
+    show_start_time: 220 // from the trial start (ms)
+}
+
+var pretrial = {
+    type: 'instructions',
+    pages: [
+        'Welcome to the experiment. You will be asked to rate how aesthetically pleasing you find several pieces of artwork.',
+        'You may be asked to rate some works of art more than once. Click next to begin.',
+        'Please indicate how much you enjoy each of the following paintings on a scale from 1 (dislike very much) to 5 (like very much). '
+    ],
+    show_clickable_nav: true
+};
+
+var posttrial = {
+    type: 'instructions',
+    pages: [
+        'You made it! Thank you for participating! Click next to end.',
+    ],
+    show_clickable_nav: true
+};
+
+var trial_1 = {
+    type: 'psychophysics',
+    stimuli: [face1, painting1],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_2 = {
+    type: 'psychophysics',
+    stimuli: [face2, painting2],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_3 = {
+    type: 'psychophysics',
+    stimuli: [face3, painting3],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_4 = {
+    type: 'psychophysics',
+    stimuli: [face4, painting4],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_5 = {
+    type: 'psychophysics',
+    stimuli: [face5, painting5],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_6 = {
+    type: 'psychophysics',
+    stimuli: [face6, painting6],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_7 = {
+    type: 'psychophysics',
+    stimuli: [face7, painting7],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_8 = {
+    type: 'psychophysics',
+    stimuli: [face8, painting8],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_9 = {
+    type: 'psychophysics',
+    stimuli: [face9, painting9],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_10 = {
+    type: 'psychophysics',
+    stimuli: [face10, painting10],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_11 = {
+    type: 'psychophysics',
+    stimuli: [face11, painting11],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_12 = {
+    type: 'psychophysics',
+    stimuli: [face12, painting12],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_13 = {
+    type: 'psychophysics',
+    stimuli: [face13, painting13],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_14 = {
+    type: 'psychophysics',
+    stimuli: [face14, painting14],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_15 = {
+    type: 'psychophysics',
+    stimuli: [face15, painting15],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_16 = {
+    type: 'psychophysics',
+    stimuli: [face16, painting16],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_17 = {
+    type: 'psychophysics',
+    stimuli: [face17, painting2],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_18 = {
+    type: 'psychophysics',
+    stimuli: [face18, painting1],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_19 = {
+    type: 'psychophysics',
+    stimuli: [face19, painting4],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_20 = {
+    type: 'psychophysics',
+    stimuli: [face20, painting6],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_21 = {
+    type: 'psychophysics',
+    stimuli: [face21, painting3],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_22 = {
+    type: 'psychophysics',
+    stimuli: [face22, painting7],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_23 = {
+    type: 'psychophysics',
+    stimuli: [face23, painting5],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_24 = {
+    type: 'psychophysics',
+    stimuli: [face24, painting8],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_25 = {
+    type: 'psychophysics',
+    stimuli: [face19, painting9],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_26 = {
+    type: 'psychophysics',
+    stimuli: [face9, painting11],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_27 = {
+    type: 'psychophysics',
+    stimuli: [face2, painting10],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_28 = {
+    type: 'psychophysics',
+    stimuli: [face17, painting13],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_29 = {
+    type: 'psychophysics',
+    stimuli: [face11, painting12],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_30 = {
+    type: 'psychophysics',
+    stimuli: [face22, painting14],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_31 = {
+    type: 'psychophysics',
+    stimuli: [face5, painting15],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_32 = {
+    type: 'psychophysics',
+    stimuli: [face15, painting16],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_33 = {
+    type: 'psychophysics',
+    stimuli: [face4, painting7],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_34 = {
+    type: 'psychophysics',
+    stimuli: [face23, painting3],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_35 = {
+    type: 'psychophysics',
+    stimuli: [face12, painting4],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_36 = {
+    type: 'psychophysics',
+    stimuli: [face3, painting1],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_37 = {
+    type: 'psychophysics',
+    stimuli: [face14, painting5],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_38 = {
+    type: 'psychophysics',
+    stimuli: [face13, painting9],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_39 = {
+    type: 'psychophysics',
+    stimuli: [face7, painting6],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_40 = {
+    type: 'psychophysics',
+    stimuli: [face1, painting8],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_41 = {
+    type: 'psychophysics',
+    stimuli: [face16, painting2],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_42 = {
+    type: 'psychophysics',
+    stimuli: [face24, painting11],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_43 = {
+    type: 'psychophysics',
+    stimuli: [face20, painting10],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_44 = {
+    type: 'psychophysics',
+    stimuli: [face6, painting12],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_45 = {
+    type: 'psychophysics',
+    stimuli: [face8, painting13],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_46 = {
+    type: 'psychophysics',
+    stimuli: [face18, painting16],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_47 = {
+    type: 'psychophysics',
+    stimuli: [face10, painting14],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+var trial_48 = {
+    type: 'psychophysics',
+    stimuli: [face21, painting15],
+    response_type: 'button',
+    button_choices: ['1 (dislike very much)', '2 (dislike somewhat)', '3 (neutral)', '4 (like somewhat)', '5 (like very much)'], // The participant can click numbers 1-5.
+    canvas_width: 1000,
+    canvas_height: 600,
+}
+
+jsPsych.init({
+    timeline: [preload,pretrial, trial_1, trial_2, trial_3, trial_4, trial_5, trial_6, trial_7, trial_8, trial_9, trial_10, trial_11, trial_12, trial_13, trial_14, trial_15, trial_16, trial_17, trial_18, trial_19, trial_20, trial_21, trial_22, trial_23, trial_24, trial_25, trial_26, trial_27, trial_28, trial_29, trial_30, trial_31, trial_32, trial_33, trial_34, trial_35, trial_36, trial_37, trial_38, trial_39, trial_40, trial_41, trial_42, trial_43, trial_44, trial_45, trial_46, trial_47, trial_48, posttrial],
+    on_finish: function(){jsPsych.data.displayData();}
+});
+
+    </script>
+</html>
